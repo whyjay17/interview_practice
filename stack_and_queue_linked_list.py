@@ -32,7 +32,7 @@ class Stack:
         return self.top.data
     
     def isEmpty(self):
-        return self.top == None
+        return self.top.next == None
     
     def printStack(self):
         
@@ -61,7 +61,41 @@ class Queue:
         if self.first == None:
             self.last = None
         return first_dat
-        
+    
+    def peek(self):
+        return self.first.data
+    
+    def isEmpty(self):
+        return self.first == None
+    
+    def printQueue(self):
+        queue = []
+        temp = self.first
+        while temp.next != None:
+            queue.append(temp.data)
+            temp = temp.next
+            
+        print('<---', queue, '<---')
+    
+
+def sortStack(stack):
+    if stack.isEmpty():
+        stack.printStack()
+        return stack
+    
+    sorted_stack = Stack()
+    sorted_stack.push(stack.pop())
+    while stack.isEmpty() == False:
+        temp = stack.pop()
+        print('pop', temp)
+        while sorted_stack.isEmpty() == False and temp > sorted_stack.peek():
+            stack.push(sorted_stack.pop())
+        sorted_stack.push(temp)
+
+    stack.printStack()
+    return stack
+    
+
 s = Stack()
 s.push(1)
 s.push(2)
@@ -74,3 +108,17 @@ print('Current Top : ', s.peek())
 print('Empty ? : ', s.isEmpty())
 s.push(6)
 s.printStack()
+print('pop() x 3')
+s.pop()
+s.pop()
+s.pop()
+s.printStack()
+print('Empty ? : ', s.isEmpty())
+print('sort')
+s2 = Stack()
+s2.push(4)
+s2.push(3)
+s2.push(1)
+s2.push(6)
+s2.printStack()
+#sortStack(s2)

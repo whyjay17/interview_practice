@@ -22,6 +22,12 @@ class Stack:
     
     def isEmpty(self):
         return len(self.items) == 0
+        
+    def minVal(self):
+        return min(self.items)
+    
+    def printStack(self):
+        print(self.items)
     
 class Queue:
     def __init__(self):
@@ -38,7 +44,22 @@ class Queue:
     
     def isEmpty(self):
         return self.items == []
+
+
+def sortStack(stack):
+    if stack.isEmpty():
+        return stack
     
+    sorted_stack = Stack()
+    sorted_stack.push(stack.pop())
+    while stack.isEmpty() == False:
+        temp = stack.pop()
+        while sorted_stack.isEmpty() == False and temp > sorted_stack.peek():
+            stack.push(sorted_stack.pop())
+        sorted_stack.push(temp)
+
+    return stack
+
 s = Stack()
 print('isEmpty', s.isEmpty())
 s.push(1)
@@ -49,3 +70,18 @@ s.push(4)
 print('isEmpty', s.isEmpty())
 
 print('Top : ', s.peek())
+print('min val :', s.minVal())
+
+
+print('sort')
+s2 = Stack()
+s2.push(4)
+s2.push(3)
+s2.push(1)
+s2.push(6)
+
+s2.printStack()
+
+s3 = sortStack(s2)
+
+s3.printStack()
