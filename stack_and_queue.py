@@ -58,7 +58,7 @@ def sortStack(stack):
             stack.push(sorted_stack.pop())
         sorted_stack.push(temp)
 
-    return stack
+    return sorted_stack
 
 s = Stack()
 print('isEmpty', s.isEmpty())

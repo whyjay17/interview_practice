@@ -87,13 +87,13 @@ def sortStack(stack):
     sorted_stack.push(stack.pop())
     while stack.isEmpty() == False:
         temp = stack.pop()
-        print('pop', temp)
+        #print('pop', temp)
         while sorted_stack.isEmpty() == False and temp > sorted_stack.peek():
             stack.push(sorted_stack.pop())
         sorted_stack.push(temp)
 
     stack.printStack()
-    return stack
+    return sorted_stack
     
 
 s = Stack()
@@ -121,4 +121,4 @@ s2.push(3)
 s2.push(1)
 s2.push(6)
 s2.printStack()
-#sortStack(s2)
+sortStack(s2).printStack()
